@@ -12,12 +12,20 @@ const HeaderMenu = () => {
         <div></div>
         <div className="inline-flex">
           {theme === 'dark' && (
-            <UiButton className='p-2 rounded-full hover:bg-black hover:bg-opacity-10 dark:hover:bg-opacity-10 dark:hover:bg-white' onClick={() => setTheme('light')} type="button">
+            <UiButton
+              className="p-2 rounded-full hover:bg-black hover:bg-opacity-10 dark:hover:bg-opacity-10 dark:hover:bg-white"
+              onClick={() => setTheme('light')}
+              type="button"
+            >
               <SunIcon className="h-6 w-6 text-gray-200" />
             </UiButton>
           )}
           {theme === 'light' && (
-            <UiButton className='p-2 rounded-full hover:bg-black hover:bg-opacity-10 dark:hover:bg-opacity-10 dark:hover:bg-white' onClick={() => setTheme('dark')} type="button">
+            <UiButton
+              className="p-2 rounded-full hover:bg-black hover:bg-opacity-10 dark:hover:bg-opacity-10 dark:hover:bg-white"
+              onClick={() => setTheme('dark')}
+              type="button"
+            >
               <MoonIcon className="h-6 w-6 text-purple-500 " />
             </UiButton>
           )}
