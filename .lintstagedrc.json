@@ -1,0 +1,6 @@
+{
+  "*.{js,jsx,ts,tsx,json,md}": [
+    "pnpm nx affected:lint --fix --parallel --uncomitted",
+    "pnpm nx format:write --uncomitted"
+  ]
+}
