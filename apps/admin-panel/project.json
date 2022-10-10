@@ -1,0 +1,64 @@
+{
+  "name": "admin-panel",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/admin-panel",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "root": "apps/admin-panel",
+        "outputPath": "dist/apps/admin-panel"
+      },
+      "configurations": {
+        "development": {
+          "outputPath": "apps/admin-panel"
+        },
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/next:server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "admin-panel:build",
+        "dev": true,
+        "hostname": "0.0.0.0"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "admin-panel:build:development",
+          "dev": true
+        },
+        "production": {
+          "buildTarget": "admin-panel:build:production",
+          "dev": false
+        }
+      }
+    },
+    "export": {
+      "executor": "@nrwl/next:export",
+      "options": {
+        "buildTarget": "admin-panel:build:production"
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/admin-panel"],
+      "options": {
+        "jestConfig": "apps/admin-panel/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/admin-panel/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  },
+  "tags": ["type:app", "scope:admin"]
+}
