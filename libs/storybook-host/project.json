@@ -37,7 +37,5 @@
       }
     }
   },
-  "implicitDependencies": [
-    "ui-button"
-  ]
+  "implicitDependencies": ["ui-button"]
 }

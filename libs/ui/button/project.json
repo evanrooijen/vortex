@@ -14,7 +14,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/ui/button"],
+      "outputs": ["{workspaceRoot}/coverage/libs/ui/button"],
       "options": {
         "jestConfig": "libs/ui/button/jest.config.ts",
         "passWithNoTests": true
