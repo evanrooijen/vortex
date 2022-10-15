@@ -1,46 +1,64 @@
-import { AppProps } from 'next/app';
+import {
+  DehydratedState,
+  Hydrate,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
+import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import DarkModeContext, { DarkModeType } from '../components/DarkModeContext';
 
 import '../styles/tailwind.css';
 
-function CustomApp({ Component, pageProps }: AppProps) {
-  
+type BasePageProps = {
+  dehydratedState: DehydratedState;
+};
+
+function CustomApp({ Component, pageProps }: AppProps<BasePageProps>) {
+  const [queryClient] = useState(() => new QueryClient());
 
   const isBrowserDefaultDark = () => {
-    if(typeof window === 'undefined') {
-      return false
+    if (typeof window === 'undefined') {
+      return false;
     }
     return window.matchMedia('(prefers-color-scheme: dark)').matches ?? false;
-  } 
+  };
 
   const [theme, setTheme] = useState<DarkModeType>('dark');
 
   useEffect(() => {
-    setTheme(isBrowserDefaultDark() ? 'dark': 'light')
-  }, [])
+    const storedTheme = window.sessionStorage.getItem(
+      'vortex_theme'
+    ) as DarkModeType;
+    if (storedTheme) {
+      setTheme(storedTheme);
+    } else {
+      setTheme(isBrowserDefaultDark() ? 'dark' : 'light');
+    }
+  }, []);
 
   useEffect(() => {
-    if(theme === 'dark') {
-      document.documentElement.classList.add('dark')
+    if (theme === 'dark') {
+      window.sessionStorage.setItem('vortex_theme', 'dark');
+      document.documentElement.classList.add('dark');
     } else {
-      document.documentElement.classList.remove('dark')
+      window.sessionStorage.setItem('vortex_theme', 'light');
+      document.documentElement.classList.remove('dark');
     }
-  }, [theme])
-
+  }, [theme]);
 
   return (
-    <>
-      <DarkModeContext.Provider value={{theme, setTheme}}>
-        <Head>
-          <title>Welcome to admin-panel!</title>
-        </Head>
-        <main className="app">
+    <QueryClientProvider client={queryClient}>
+      <Hydrate state={pageProps.dehydratedState}>
+        <DarkModeContext.Provider value={{ theme, setTheme }}>
+          <Head>
+            <title>Welcome to admin-panel!</title>
+          </Head>
           <Component {...pageProps} />
-        </main>
-      </DarkModeContext.Provider>
-    </>
+        </DarkModeContext.Provider>
+      </Hydrate>
+    </QueryClientProvider>
   );
 }
 
