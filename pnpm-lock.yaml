@@ -25,6 +25,7 @@ specifiers:
   '@svgr/webpack': ^5.4.0
   '@swc/core': ^1.2.173
   '@swc/jest': 0.2.20
+  '@tanstack/react-query': ^4.12.0
   '@testing-library/react': 13.4.0
   '@types/jest': 28.1.1
   '@types/node': 16.11.7
@@ -67,6 +68,7 @@ specifiers:
 
 dependencies:
   '@heroicons/react': 2.0.12_react@18.2.0
+  '@tanstack/react-query': 4.12.0_biqbaboplfbrettd7655fr4n2y
   core-js: 3.25.5
   next: 12.3.1_cg457tka2dddtbakn226cmd5ri
   react: 18.2.0
@@ -6057,6 +6059,28 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@tanstack/query-core/4.12.0:
+    resolution: {integrity: sha512-KEiFPNLMFByhNL2s6RBFL6Z5cNdwwQzFpW/II3GY+rEuQ343ZEoVyQ48zlUXXkEkbamQFIFg2onM8Pxf0Yo01A==}
+    dev: false
+
+  /@tanstack/react-query/4.12.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-prchV1q+CJ0ZVo8Rts2cOF3azDfQizZZySmH6XXsXRcPTbir0sgb9fp0vY/5l5ZkSYjTvWt/OL8WQhAhYMSvrA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@tanstack/query-core': 4.12.0
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      use-sync-external-store: 1.2.0_react@18.2.0
+    dev: false
 
   /@testing-library/dom/8.18.1:
     resolution: {integrity: sha512-oEvsm2B/WtcHKE+IcEeeCqNU/ltFGaVyGbpcm4g/2ytuT49jrlH9x5qRKL/H3A6yfM4YAbSbC0ceT5+9CEXnLg==}
