@@ -2,7 +2,7 @@ import {
   DehydratedState,
   Hydrate,
   QueryClient,
-  QueryClientProvider
+  QueryClientProvider,
 } from '@tanstack/react-query';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
