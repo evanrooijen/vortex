@@ -25,6 +25,7 @@ specifiers:
   '@svgr/webpack': ^5.4.0
   '@swc/core': ^1.2.173
   '@swc/jest': 0.2.20
+  '@tanstack/react-query': ^4.12.0
   '@testing-library/react': 13.4.0
   '@types/jest': 28.1.1
   '@types/node': 16.11.7
@@ -53,6 +54,7 @@ specifiers:
   postcss: ^8.4.17
   postcss-loader: ^7.0.1
   prettier: ^2.6.2
+  prettier-plugin-tailwindcss: 0.1.13
   react: 18.2.0
   react-dom: 18.2.0
   react-test-renderer: 18.2.0
@@ -67,6 +69,7 @@ specifiers:
 
 dependencies:
   '@heroicons/react': 2.0.12_react@18.2.0
+  '@tanstack/react-query': 4.12.0_biqbaboplfbrettd7655fr4n2y
   core-js: 3.25.5
   next: 12.3.1_cg457tka2dddtbakn226cmd5ri
   react: 18.2.0
@@ -124,6 +127,7 @@ devDependencies:
   postcss: 8.4.17
   postcss-loader: 7.0.1_sat2ilddhdkv6huwh4d4inpfry
   prettier: 2.7.1
+  prettier-plugin-tailwindcss: 0.1.13_prettier@2.7.1
   react-test-renderer: 18.2.0_react@18.2.0
   sass: 1.55.0
   tailwindcss: 3.1.8_m6qswdslzu5ddi7v2thd72jv24
@@ -6057,6 +6061,28 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@tanstack/query-core/4.12.0:
+    resolution: {integrity: sha512-KEiFPNLMFByhNL2s6RBFL6Z5cNdwwQzFpW/II3GY+rEuQ343ZEoVyQ48zlUXXkEkbamQFIFg2onM8Pxf0Yo01A==}
+    dev: false
+
+  /@tanstack/react-query/4.12.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-prchV1q+CJ0ZVo8Rts2cOF3azDfQizZZySmH6XXsXRcPTbir0sgb9fp0vY/5l5ZkSYjTvWt/OL8WQhAhYMSvrA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@tanstack/query-core': 4.12.0
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      use-sync-external-store: 1.2.0_react@18.2.0
+    dev: false
 
   /@testing-library/dom/8.18.1:
     resolution: {integrity: sha512-oEvsm2B/WtcHKE+IcEeeCqNU/ltFGaVyGbpcm4g/2ytuT49jrlH9x5qRKL/H3A6yfM4YAbSbC0ceT5+9CEXnLg==}
@@ -15454,6 +15480,15 @@ packages:
   /prelude-ls/1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
+    dev: true
+
+  /prettier-plugin-tailwindcss/0.1.13_prettier@2.7.1:
+    resolution: {integrity: sha512-/EKQURUrxLu66CMUg4+1LwGdxnz8of7IDvrSLqEtDqhLH61SAlNNUSr90UTvZaemujgl3OH/VHg+fyGltrNixw==}
+    engines: {node: '>=12.17.0'}
+    peerDependencies:
+      prettier: '>=2.2.0'
+    dependencies:
+      prettier: 2.7.1
     dev: true
 
   /prettier/2.3.0:

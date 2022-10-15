@@ -1,46 +1,34 @@
-import { AppProps } from 'next/app';
+import {
+  DehydratedState,
+  Hydrate,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
+import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import { useEffect, useState } from 'react';
-import DarkModeContext, { DarkModeType } from '../components/DarkModeContext';
+import { useState } from 'react';
+import { DarkMode } from '../components/DarkMode';
 
 import '../styles/tailwind.css';
 
-function CustomApp({ Component, pageProps }: AppProps) {
-  
+type BasePageProps = {
+  dehydratedState: DehydratedState;
+};
 
-  const isBrowserDefaultDark = () => {
-    if(typeof window === 'undefined') {
-      return false
-    }
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ?? false;
-  } 
-
-  const [theme, setTheme] = useState<DarkModeType>('dark');
-
-  useEffect(() => {
-    setTheme(isBrowserDefaultDark() ? 'dark': 'light')
-  }, [])
-
-  useEffect(() => {
-    if(theme === 'dark') {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
-  }, [theme])
-
+function CustomApp({ Component, pageProps }: AppProps<BasePageProps>) {
+  const [queryClient] = useState(() => new QueryClient());
 
   return (
-    <>
-      <DarkModeContext.Provider value={{theme, setTheme}}>
-        <Head>
-          <title>Welcome to admin-panel!</title>
-        </Head>
-        <main className="app">
+    <QueryClientProvider client={queryClient}>
+      <Hydrate state={pageProps.dehydratedState}>
+        <DarkMode>
+          <Head>
+            <title>Welcome to admin-panel!</title>
+          </Head>
           <Component {...pageProps} />
-        </main>
-      </DarkModeContext.Provider>
-    </>
+        </DarkMode>
+      </Hydrate>
+    </QueryClientProvider>
   );
 }
 
